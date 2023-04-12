@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-cartservice-v1
+spec:
+  selector:
+    matchLabels:
+      app: eshop-cartservice
+  template:
+    metadata:
+      labels:
+        app: eshop-cartservice
+        version: v1
+    spec:
+      containers:
+        - name: eshop-cartservice
+          image: {{ .Values.global.images.cartservice }}
+          ports:
+          - containerPort: 8091
+          env:
+            - name: SPRING_REDIS_HOST
+              value: redis
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: eshop-cartservice-v2
+# spec:
+#   selector:
+#     matchLabels:
+#       app: eshop-cartservice
+#   template:
+#     metadata:
+#       labels:
+#         app: eshop-cartservice
+#         version: v2
+#     spec:
+#       containers:
+#         - name: eshop-cartservice
+#           image: 224166808254.dkr.ecr.ap-northeast-2.amazonaws.com/eshop-cartservice:cbtest
+#           ports:
+#           - containerPort: 8091
+#           env:
+#             - name: SPRING_REDIS_HOST
+#               value: redis2
+#             - name: SPRING_RABBITMQ_HOST
+#               value: rabbitmq

@@ -1,0 +1,37 @@
+#인증 필요
+
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: kibana
+# spec:
+#   hosts:
+#   - "*"
+#   gateways:
+#   - ingress-gateway
+#   http:
+#   - match:
+#     - uri:
+#         prefix: /kibana
+#     route:
+#     - destination:
+#         host: eshop-kibana
+#         port:
+#           number: 5601
+# ---
+
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: kibana
+#   namespace: eshop
+# spec:
+#   host: eshop-kibana
+#   trafficPolicy:
+#     tls:
+#       mode: DISABLE
+
+# ---
+
+
+
